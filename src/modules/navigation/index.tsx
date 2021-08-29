@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-location";
+import { Link } from "react-router-dom";
 import { colors } from "src/constants/colors";
 import styled from "styled-components";
 import { Nav } from "./components/nav";

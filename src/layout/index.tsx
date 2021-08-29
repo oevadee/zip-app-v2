@@ -1,19 +1,25 @@
 import React, { ReactNode } from "react";
-import { useLocation } from "react-location";
+import { useLocation } from "react-router-dom";
 import { Footer } from "src/modules/footer";
 import { Navigation } from "src/modules/navigation/index";
 import { Sidebar } from "src/modules/sidebar";
 import styled from "styled-components";
+import { PATHS } from "../routes/paths";
 
 const SWrapper = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: column;
-  border: solid 1px red;
+`;
+
+const SMainWrapper = styled.div`
+  display: flex;
+  flex: 1;
 `;
 
 const SMain = styled.main`
   flex: 1;
+  padding: 10px;
 `;
 
 interface Props {
@@ -21,14 +27,15 @@ interface Props {
 }
 
 export const Layout = ({ children }: Props) => {
-  const location = useLocation();
-  console.log(location);
+  const { pathname } = useLocation();
 
   return (
     <SWrapper>
       <Navigation />
-      {/* {current.pathname === "/app" && <Sidebar />} */}
-      <SMain>{children}</SMain>
+      <SMainWrapper>
+        {pathname === PATHS.CHAT && <Sidebar />}
+        <SMain>{children}</SMain>
+      </SMainWrapper>
       <Footer />
     </SWrapper>
   );
