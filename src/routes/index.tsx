@@ -1,15 +1,22 @@
 import React from "react";
 
-import { Navigate, Route, Routes } from "react-location";
+import { Redirect, Route, Switch } from "react-router-dom";
 
-import { PATHS } from "src/routes/paths";
-import { Application } from "src/views/application";
+import { PATHS } from "./paths";
+
+import { ChatView } from "src/views/application/chat";
+import { ExpensesView } from "src/views/application/expenses";
+import { SettingsView } from "src/views/application/settings";
 
 export const AppRoutes = () => {
   return (
-    <Routes>
-      <Route path="*" element={<Navigate to={PATHS.APP} />} />
-      <Route path={PATHS.APP} element={<Application />} />
-    </Routes>
+    <Switch>
+      <Redirect to={PATHS.EXPENSES} />
+      <Route path={PATHS.APP}>
+        <Route path={PATHS.EXPENSES} component={ExpensesView} />
+        <Route path={PATHS.CHAT} component={ChatView} />
+        <Route path={PATHS.SETTING} component={SettingsView} />
+      </Route>
+    </Switch>
   );
 };

@@ -1,15 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { ReactLocation } from "react-location";
-import { AppRoutes } from "src/routes";
+import { BrowserRouter as Router } from "react-router-dom";
 import { GlobalStyle } from "./styles/globalStyles";
+import { IndexView } from "./views";
 
 ReactDOM.render(
   <React.StrictMode>
-    <ReactLocation>
+    <Router>
       <GlobalStyle />
-      <AppRoutes />
-    </ReactLocation>
+      <IndexView />
+    </Router>
   </React.StrictMode>,
   document.getElementById("root")
 );
